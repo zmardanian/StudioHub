@@ -1,0 +1,4 @@
+StudioHub VST3 SDK baseline
+Version: 3.8.1_build_84
+Commit: 3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96
+License: MIT

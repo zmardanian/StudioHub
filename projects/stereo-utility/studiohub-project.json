@@ -1,0 +1,42 @@
+{
+  "artifact": "build/vst3/VST3/Release/StudioHubStereoUtility.vst3",
+  "build": {
+    "configuration": "Release",
+    "definitions": {},
+    "directory": "build/vst3",
+    "source": ".",
+    "target": "StudioHubStereoUtility",
+    "test_targets": [
+      "StudioHubStereoUtilityTests",
+      "StudioHubStereoUtilityMeasurements",
+      "StudioHubStereoUtilityIntegrationTests",
+      "StudioHubStereoUtilityStateTests"
+    ]
+  },
+  "category": "Fx|Tools",
+  "dependency": {
+    "fingerprint_files": [
+      "dependency-lock.json"
+    ],
+    "identity": "StudioHub pinned VST3 SDK / Cairo-corrected VSTGUI"
+  },
+  "description": "Implement StudioHub Stereo Utility: native stereo VST3 with Gain (-24 to +24 dB, default 0), Balance (-100% left to +100% right, center preserves both channels; attenuate only the opposite channel), and host-standard Bypass. Smooth gain/bal",
+  "evidence": "evidence/jobs",
+  "format": "VST3",
+  "gui": true,
+  "id": "stereo-utility",
+  "measurements": {
+    "capability": "stereo-utility",
+    "report": "evidence/measurements.json",
+    "executable": "build/vst3/StudioHubStereoUtilityMeasurements"
+  },
+  "module": "build/vst3/VST3/Release/StudioHubStereoUtility.vst3/Contents/x86_64-linux/StudioHubStereoUtility.so",
+  "name": "StudioHub Stereo Utility",
+  "root": ".",
+  "schema_version": 1,
+  "tests": [
+    "StudioHubStereoUtilityTests",
+    "StudioHubStereoUtilityIntegrationTests",
+    "StudioHubStereoUtilityStateTests"
+  ]
+}

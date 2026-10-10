@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -u
+
+project_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+state_root="${XDG_STATE_HOME:-$HOME/.local/state}/studiohub"
+log_dir="$state_root"
+log_file="$log_dir/launcher.log"
+mkdir -p "$log_dir"
+
+show_error() {
+    local message="$1"
+    printf '%s\n' "$message" >> "$log_file"
+    if command -v kdialog >/dev/null 2>&1; then
+        kdialog --title 'StudioHub Desktop' --error "$message"
+    elif command -v notify-send >/dev/null 2>&1; then
+        notify-send 'StudioHub Desktop could not start' "$message"
+    fi
+}
+
+if [[ ! -x "$project_root/build/desktop-app/StudioHubDesktop" ]]; then
+    show_error "StudioHub Desktop has not been built. Follow docs/GETTING_STARTED.md. See $log_file"
+    exit 127
+fi
+
+printf '[%s] Launching StudioHub Desktop\n' "$(date --iso-8601=seconds)" >> "$log_file"
+if command -v toolbox >/dev/null 2>&1 && toolbox list --containers 2>/dev/null | grep -q 'studiohub-qt-dev'; then
+    toolbox run --container studiohub-qt-dev bash -lc \
+        'cd "$1" && exec env QT_QPA_PLATFORM=xcb "$1/build/desktop-app/StudioHubDesktop"' \
+        studiohub-desktop "$project_root" >> "$log_file" 2>&1
+    status=$?
+else
+    env QT_QPA_PLATFORM=xcb "$project_root/build/desktop-app/StudioHubDesktop" >> "$log_file" 2>&1
+    status=$?
+fi
+
+if (( status != 0 )); then
+    show_error "StudioHub Desktop exited with status $status. See $log_file"
+fi
+exit "$status"

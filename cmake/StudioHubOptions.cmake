@@ -1,0 +1,7 @@
+option(STUDIOHUB_ENABLE_VST3 "Build VST3 adapter" OFF)
+option(STUDIOHUB_ENABLE_CLAP "Build CLAP adapter" OFF)
+option(STUDIOHUB_ENABLE_GUI "Build GUI subsystem" OFF)
+option(STUDIOHUB_ENABLE_SIMD "Enable SIMD acceleration" ON)
+option(STUDIOHUB_ENABLE_MEASUREMENTS "Build measurement subsystem" ON)
+option(STUDIOHUB_BUILD_TOOLS "Build analysis tools" ON)
+option(STUDIOHUB_BUILD_TESTS "Build tests" ON)

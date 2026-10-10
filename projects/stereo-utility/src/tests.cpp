@@ -1,0 +1,22 @@
+#include "stereo_utility_dsp.hpp"
+#include <array>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <limits>
+#include <vector>
+using namespace studiohub::stereo_utility;
+namespace {
+int failures=0;
+void check(bool ok,const char* what){if(!ok){std::fprintf(stderr,"FAIL: %s\n",what);++failures;}}
+bool near(double a,double b,double e=1e-6){return std::abs(a-b)<=e;}
+void testGain(){for(double rate:{44100.,48000.,96000.}){Processor p;p.setSampleRate(rate);p.reset({6,0,false});std::array<double,32> in{},r{},out{},or_{};in.fill(.125);r.fill(-.25);p.process(in.data(),r.data(),out.data(),or_.data(),in.size());double expected=.125*std::pow(10.,6./20);check(near(out[0],expected,1e-12),"static gain matches dB transfer");check(near(or_[31],-.25*std::pow(10.,6./20),1e-12),"gain preserves right-channel polarity and level");check(p.rampSamples()==static_cast<unsigned>(rate*.01),"10 ms ramp sample count at supported sample rate");}}
+void testBalance(){std::array<double,4> l{.25,.25,.25,.25},r{-.5,-.5,-.5,-.5},ol{},orr{};Processor p;p.reset({0,1,false});p.process(l.data(),r.data(),ol.data(),orr.data(),4);for(int i=0;i<4;++i){check(near(ol[i],0),"right balance endpoint attenuates left only");check(near(orr[i],r[i]),"right balance endpoint leaves right unchanged");}p.reset({0,-1,false});p.process(l.data(),r.data(),ol.data(),orr.data(),4);for(int i=0;i<4;++i){check(near(ol[i],l[i]),"left balance endpoint leaves left unchanged");check(near(orr[i],0),"left balance endpoint attenuates right only");}p.reset({0,0,false});p.process(l.data(),r.data(),ol.data(),orr.data(),4);check(ol==l&&orr==r,"center balance preserves both channels exactly");}
+void testStereoAndInPlace(){Processor p;p.reset({0,0,false});double l[3]={.1,.2,.3},r[3]={-.2,-.1,.4};p.process(l,r,l,r,3);check(l[0]==.1&&l[2]==.3&&r[1]==-.1,"in-place processing preserves stereo identity at defaults");}
+std::vector<double> render(const std::vector<std::size_t>& blocks){Processor p;p.setSampleRate(48000);p.reset();p.setGain(12);std::vector<double> in(997,.2),right(997,-.1),out(997),or_(997);std::size_t pos=0;for(auto n:blocks){n=std::min(n,in.size()-pos);p.process(in.data()+pos,right.data()+pos,out.data()+pos,or_.data()+pos,n);pos+=n;if(pos==in.size())break;}if(pos<in.size())p.process(in.data()+pos,right.data()+pos,out.data()+pos,or_.data()+pos,in.size()-pos);return out;}
+void testRampAndBlockInvariant(){auto a=render({997}),b=render({1,3,7,64,2,111,809});check(a.size()==b.size(),"render sizes agree");for(std::size_t i=0;i<a.size();++i)check(a[i]==b[i],"smoothing is invariant to process block boundaries");check(a[0]==.2,"parameter transition starts at prior value");check(near(a[480],.2*std::pow(10.,12./20),1e-12),"gain ramp reaches target after 10 ms at 48 kHz");}
+void testBypass(){Processor p;p.reset({12,.5,true});double l[3]{.25,.25,.25},r[3]{-.5,-.5,-.5},ol[3]{},orr[3]{};p.process(l,r,ol,orr,3);check(ol[0]==l[0]&&orr[2]==r[2],"steady bypass is bit transparent");p.setBypass(false);p.process(l,r,ol,orr,1);check(ol[0]==l[0],"bypass release starts at dry signal");}
+void testSanitizationAndSilence(){Processor p;p.reset({std::numeric_limits<double>::quiet_NaN(),std::numeric_limits<double>::infinity(),false});double x[5]{0,std::numeric_limits<double>::infinity(),-std::numeric_limits<double>::infinity(),std::numeric_limits<double>::quiet_NaN(),std::numeric_limits<double>::max()},y[5]{},z[5]{},w[5]{};p.process(x,x,y,z,5);for(int i=0;i<5;++i)check(std::isfinite(y[i])&&std::isfinite(z[i]),"extreme and non-finite inputs always produce finite output");check(y[0]==0,"silence remains exactly silent");p.setGain(std::numeric_limits<double>::quiet_NaN());check(p.target().gainDb==0,"NaN control input returns to safe unity gain");}
+void testAutomationOffset(){Processor p;p.setSampleRate(1000);p.reset();double in[12],r[12],out[12],orr[12];for(auto&x:in)x=1;for(auto&x:r)x=1;p.process(in,r,out,orr,4);p.setGain(24);p.process(in+4,r+4,out+4,orr+4,4);check(out[4]==1,"automation change takes effect at caller's sample boundary");check(out[5]>out[4]&&out[7]>out[6],"automated gain transitions smoothly sample by sample");}
+}
+int main(){testGain();testBalance();testStereoAndInPlace();testRampAndBlockInvariant();testBypass();testSanitizationAndSilence();testAutomationOffset();if(failures){std::fprintf(stderr,"%d checks failed\n",failures);return EXIT_FAILURE;}std::puts("Stereo Utility DSP checks passed");return EXIT_SUCCESS;}

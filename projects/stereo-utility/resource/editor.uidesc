@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+ <fonts><font name="normal" font-name="DejaVu Sans" size="14"/><font name="small" font-name="DejaVu Sans" size="12"/></fonts>
+ <colors><color name="background" rgba="#18212fff"/><color name="panel" rgba="#222f40ff"/><color name="text" rgba="#e8edf4ff"/><color name="accent" rgba="#62c3a5ff"/><color name="track" rgba="#425267ff"/></colors>
+ <control-tags><control-tag name="Gain" tag="100"/><control-tag name="Balance" tag="101"/><control-tag name="Bypass" tag="102"/></control-tags>
+ <template name="Editor" class="CViewContainer" size="520, 300" background-color="background">
+  <view class="CTextLabel" origin="24, 18" size="472, 34" font="normal" font-color="text" title="STUDIOHUB   /   STEREO UTILITY"/>
+  <view class="CTextLabel" origin="24, 64" size="120, 22" font="small" font-color="text" title="GAIN   /   dB"/>
+  <view class="CSlider" origin="24, 92" size="356, 28" control-tag="Gain" min-value="0" max-value="1" mode="touch" draw-frame="true" draw-back="true" draw-value="true" draw-back-color="track" draw-value-color="accent" handle-color="text" frame-color="track"/>
+  <view class="CTextEdit" origin="396, 91" size="100, 30" control-tag="Gain" back-color="panel" frame-color="track" font-color="text" font="small"/>
+  <view class="CTextLabel" origin="24, 137" size="160, 22" font="small" font-color="text" title="BALANCE   /   L–R"/>
+  <view class="CSlider" origin="24, 165" size="356, 28" control-tag="Balance" min-value="0" max-value="1" mode="touch" draw-frame="true" draw-back="true" draw-value="true" draw-value-from-center="true" draw-back-color="track" draw-value-color="accent" handle-color="text" frame-color="track"/>
+  <view class="CTextEdit" origin="396, 164" size="100, 30" control-tag="Balance" back-color="panel" frame-color="track" font-color="text" font="small"/>
+  <view class="CCheckBox" origin="24, 226" size="140, 28" control-tag="Bypass" title="BYPASS" font="small" font-color="text" boxframe-color="text" boxfill-color="panel" checkmark-color="accent"/>
+  <view class="CTextLabel" origin="230, 230" size="266, 22" font="small" font-color="text" title="10 ms smooth control transitions"/>
+ </template>
+</vstgui-ui-description>

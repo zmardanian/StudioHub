@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sdk": "third_party/vst3sdk",
+  "pluginval": "",
+  "cmake": "cmake",
+  "ctest": "ctest",
+  "jobs": 2
+}

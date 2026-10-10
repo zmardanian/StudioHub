@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+ <fonts><font name="normal" font-name="DejaVu Sans" size="16"/></fonts>
+ <colors><color name="background" rgba="#18212fff"/><color name="text" rgba="#e8edf4ff"/></colors>
+ <template name="Editor" class="CViewContainer" size="480, 240" background-color="background">
+  <view class="CTextLabel" origin="20, 20" size="440, 40" font="normal" font-color="text" title="@DISPLAY@"/>
+ </template>
+</vstgui-ui-description>

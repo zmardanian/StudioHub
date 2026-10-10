@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "id": "studiocomp-fet",
+  "name": "StudioComp FET",
+  "root": ".",
+  "format": "VST3",
+  "category": "Fx|Dynamics",
+  "description": "Feed-forward peak-detected compressor with a host-automatable soft knee.",
+  "gui": true,
+  "build": {
+    "source": ".",
+    "directory": "build/desktop-vst3",
+    "target": "StudioCompFET",
+    "configuration": "Release",
+    "test_targets": [
+      "StudioCompFETTests",
+      "StudioCompFETLab"
+    ],
+    "definitions": {
+      "STUDIOHUB_ENABLE_VST3": "ON",
+      "STUDIOHUB_ENABLE_VSTGUI": "ON",
+      "STUDIOHUB_BUILD_FET_TESTS": "ON",
+      "STUDIOHUB_BUILD_TESTS": "OFF",
+      "STUDIOHUB_BUILD_TOOLS": "ON"
+    }
+  },
+  "artifact": "build/desktop-vst3/VST3/Release/StudioCompFET.vst3",
+  "module": "build/desktop-vst3/VST3/Release/StudioCompFET.vst3/Contents/x86_64-linux/StudioCompFET.so",
+  "tests": [
+    "StudioCompFETTests"
+  ],
+  "evidence": "engineering/platform/jobs",
+  "measurements": {
+    "capability": "dynamics",
+    "report": "engineering/platform/jobs/audio/measurements.json",
+    "executable": "build/desktop-vst3/tools/StudioCompFETLab"
+  },
+  "dependency": {
+    "identity": "Steinberg VST3 SDK 3.8.1 / VSTGUI 4.15.1 with Cairo lifecycle correction",
+    "fingerprint_files": [
+      "third_party/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairographicscontext.cpp",
+      "third_party/vst3sdk/CMakeLists.txt"
+    ]
+  }
+}

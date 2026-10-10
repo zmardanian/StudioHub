@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+  <fonts/>
+  <colors>
+    <color name="Panel" rgba="#15191eff"/>
+    <color name="Surface" rgba="#20272eff"/>
+    <color name="Accent" rgba="#58dfb1ff"/>
+    <color name="Text" rgba="#edf4f1ff"/>
+    <color name="Muted" rgba="#87969aff"/>
+    <color name="Line" rgba="#354149ff"/>
+  </colors>
+  <template background-color="Panel" background-color-draw-style="filled" class="CViewContainer" mouse-enabled="true" name="Editor" origin="0, 0" size="760, 430" transparent="false">
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontVeryBig" font-color="Text" frame-color="Panel" origin="28, 18" size="430, 32" style-no-frame="true" text-alignment="left" title="STUDIOCOMP FET" transparent="true"/>
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Accent" frame-color="Panel" origin="570, 25" size="160, 18" style-no-frame="true" text-alignment="right" title="STEREO LINK  /  0.4" transparent="true"/>
+    <view back-color="Surface" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Line" frame-width="1" origin="28, 66" size="112, 24" style-no-frame="false" text-alignment="center" title="GAIN REDUCTION" transparent="false"/>
+    <view bitmap="meter_on" class="CVuMeter" control-tag="GainReduction" default-value="0" max-value="1" min-value="0" mouse-enabled="false" num-led="40" off-bitmap="meter_off" orientation="horizontal" origin="150, 69" size="580, 18" transparent="false"/>
+    <view back-color="Line" class="CViewContainer" mouse-enabled="false" origin="28, 111" size="704, 1" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="35, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="THRESHOLD" transparent="true"/>
+    <view class="CKnob" control-tag="Threshold" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.7" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="37, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Threshold" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="42, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="150, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="RATIO" transparent="true"/>
+    <view class="CKnob" control-tag="Ratio" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.158" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="152, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Ratio" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="157, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="265, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="ATTACK" transparent="true"/>
+    <view class="CKnob" control-tag="Attack" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.0045" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="267, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Attack" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="272, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="380, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="RELEASE" transparent="true"/>
+    <view class="CKnob" control-tag="Release" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.0376" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="382, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Release" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="387, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="495, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="INPUT" transparent="true"/>
+    <view class="CKnob" control-tag="Input" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.5" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="497, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Input" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="502, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="610, 126" size="95, 18" style-no-frame="true" text-alignment="center" title="OUTPUT" transparent="true"/>
+    <view class="CKnob" control-tag="Output" corona-color="Accent" corona-inset="10" corona-outline-width-add="1" default-value="0.5" handle-color="Text" handle-line-width="5" max-value="1" min-value="0" mouse-enabled="true" origin="612, 148" size="92, 92" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Output" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="617, 246" size="82, 24" text-alignment="center" transparent="false"/>
+
+    <view back-color="Surface" class="CTextButton" control-tag="Bypass" default-value="0" font="~ NormalFont" frame-color="Line" frame-color-highlighted="Accent" frame-width="1" max-value="1" min-value="0" mouse-enabled="true" origin="620, 318" round-radius="5" size="84, 32" text-alignment="center" text-color="Text" text-color-highlighted="Panel" title="BYPASS" transparent="false"/>
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="28, 350" size="480, 22" style-no-frame="true" text-alignment="left" title="Feed-forward peak detection   •   stereo-linked   •   smooth analog-style timing" transparent="true"/>
+
+    <view back-color="Panel" class="CTextLabel" font="~ NormalFontSmall" font-color="Muted" frame-color="Panel" origin="525, 278" size="84, 18" style-no-frame="true" text-alignment="center" title="KNEE" transparent="true"/>
+    <view class="CKnob" control-tag="Knee" corona-color="Accent" corona-inset="7" handle-color="Text" handle-line-width="4" max-value="1" min-value="0" mouse-enabled="true" origin="537, 294" size="60, 60" start-angle="135" angle-range="270" transparent="true" wheel-inc-value="0.01" zoom-factor="1.5"/>
+    <view back-color="Surface" class="CParamDisplay" control-tag="Knee" font="~ NormalFont" font-color="Text" frame-color="Line" frame-width="1" origin="523, 357" size="88, 22" text-alignment="center" transparent="false"/>
+  </template>
+  <bitmaps>
+    <bitmap name="meter_on" path="meter_on.png"/>
+    <bitmap name="meter_off" path="meter_off.png"/>
+  </bitmaps>
+  <control-tags>
+    <control-tag name="Threshold" tag="0"/>
+    <control-tag name="Ratio" tag="1"/>
+    <control-tag name="Attack" tag="2"/>
+    <control-tag name="Release" tag="3"/>
+    <control-tag name="Input" tag="4"/>
+    <control-tag name="Output" tag="5"/>
+    <control-tag name="Bypass" tag="6"/>
+    <control-tag name="Knee" tag="7"/>
+    <control-tag name="GainReduction" tag="8"/>
+  </control-tags>
+</vstgui-ui-description>

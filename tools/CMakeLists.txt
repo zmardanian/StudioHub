@@ -1,0 +1,4 @@
+add_executable(StudioCompFETLab measurement/fet_lab.cpp)
+target_link_libraries(StudioCompFETLab PRIVATE StudioHubFETDSP)
+target_compile_features(StudioCompFETLab PRIVATE cxx_std_20)
+studiohub_apply_warnings(StudioCompFETLab)

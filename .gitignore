@@ -1,0 +1,19 @@
+/build*/
+/CMakeUserPresets.json
+*.user
+__pycache__/
+*.py[cod]
+*.core
+core.*
+*.log
+*.wav
+/engineering/
+
+# Generated platform receipts and independent-project builds
+/engineering/platform/jobs/
+/projects/*/build/
+/projects/*/evidence/
+
+/projects/*/build/
+/projects/*/evidence/
+/projects/*/.git/
